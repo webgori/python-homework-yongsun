@@ -1,3 +1,4 @@
+'''
 for n in range(5, 0, -1):
   print(n)
   
@@ -24,3 +25,41 @@ for ex in exam:
   score.append(min(100, ex + 5))
   
 print(score)
+'''
+
+
+for i in range(1, 100):
+  clap = str(i)
+  
+  if len(clap) == 1:
+    if clap == '3' or clap == '6' or clap == '9':
+      clap = '짝'
+  else:
+    first_number = clap[0:1]
+    second_number = clap[1:2]
+
+    if first_number == '3' or first_number == '6' or first_number == '9':
+      clap = '짝'
+    
+    if second_number == '3' or second_number == '6' or second_number == '9':
+      if clap.isnumeric():
+        clap = ''
+      clap += '짝'
+
+
+  if i % 10 == 0:
+    if clap == str(i):  
+      print(i)
+    else:
+      print(clap)
+  else:
+    if clap == str(i):  
+      print(f'{i}	', end='')
+    else:
+      print(f'{clap}	', end='')
+  
+  '''
+  for j in range(1, 10):
+    line += f'{i}	'
+  print(line)
+  '''
