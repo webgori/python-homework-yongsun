@@ -30,7 +30,8 @@ elif decimal3 >= decimal1 and decimal3 >= decimal2:
   print(f'가장 큰 수는 {decimal3} 입니다.')
   
 car_number = input('차량번호를 입력하세요 >>>')
-last_car_number = int(car_number[-2])
+#last_car_number = int(car_number[-2])
+last_car_number = int(car_number[8:9])
 
 if last_car_number % 2 == 0:
   print(f'차량번호 {car_number}는 오늘 운행가능입니다.')
