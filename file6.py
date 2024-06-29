@@ -11,7 +11,7 @@ print(f'1부터 {number}사이 모든 정수의 합계는 {sum}입니다.')
 
 list = []
 number = int(input('몇 개의 과일을 보관할까요? >>>'))
-for n in range(1, int(number) + 1):
+for n in range(1, number + 1):
   list.append(input(f'{n}번째 과일을 입력하세요 >>>'))
 
 print(f'입력받은 과일들은 {list} 입니다.')
