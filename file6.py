@@ -27,31 +27,31 @@ print(score)
 
 
 for i in range(1, 100):
-  clap = str(i)
+  display_text = str(i)
   
-  if len(clap) == 1:
-    if clap == '3' or clap == '6' or clap == '9':
-      clap = '짝'
+  if len(display_text) == 1:
+    if display_text == '3' or display_text == '6' or display_text == '9':
+      display_text = '짝'
   else:
-    first_number = clap[0:1]
-    second_number = clap[1:2]
+    first_number = display_text[0:1]
+    second_number = display_text[1:2]
 
     if first_number == '3' or first_number == '6' or first_number == '9':
-      clap = '짝'
+      display_text = '짝'
     
     if second_number == '3' or second_number == '6' or second_number == '9':
-      if clap.isnumeric():
-        clap = ''
-      clap += '짝'
+      if display_text.isnumeric():
+        display_text = ''
+      display_text += '짝'
 
 
   if i % 10 == 0:
-    if clap == str(i):  
+    if display_text == str(i):  
       print(i)
     else:
-      print(clap)
+      print(display_text)
   else:
-    if clap == str(i):  
+    if display_text == str(i):  
       print(f'{i}	', end='')
     else:
-      print(f'{clap}	', end='')
+      print(f'{display_text}	', end='')
