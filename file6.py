@@ -1,4 +1,3 @@
-'''
 for n in range(5, 0, -1):
   print(n)
   
@@ -25,7 +24,6 @@ for ex in exam:
   score.append(min(100, ex + 5))
   
 print(score)
-'''
 
 
 for i in range(1, 100):
@@ -57,9 +55,3 @@ for i in range(1, 100):
       print(f'{i}	', end='')
     else:
       print(f'{clap}	', end='')
-  
-  '''
-  for j in range(1, 10):
-    line += f'{i}	'
-  print(line)
-  '''
