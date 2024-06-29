@@ -40,8 +40,11 @@ for i in range(1, 100):
       display_text = '짝'
     
     if second_number == '3' or second_number == '6' or second_number == '9':
+      # 십의 자리가 3, 6, 9가 아니면 display_text 변수를 초기화 해준다.
       if display_text.isnumeric():
         display_text = ''
+      
+      # 십의 자리가 짝이면 짝짝이 되고, 십의 자리가 짝이 아니면 초기화를 해줬기 때문에 짝이 된다.
       display_text += '짝'
 
 
