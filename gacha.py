@@ -1,13 +1,17 @@
+from random import shuffle
+
 mode = 'guest'
 command = ''
 admin_password = 'admin'
 balance = 10000
 buy_list = []
-sold_products = []
+total_sales = 0
 running = True
-price_1000_products = ['', '', '', '', '', '', '', '', '', '무선 마우스']
-price_2000_products = ['', '', '', '', '', '', '', '', '', '기계식 키보드']
-price_3000_products = ['', '', '', '', '', '', '', '', '', '그래픽 카드']
+price_1000_products = ['빽다방 1,000원 할인권', '빽다방 1,000원 할인권', '빽다방 1,000원 할인권', '빽다방 1,000원 할인권', '빽다방 2,000원 할인권', '빽다방 2,000원 할인권', '빽다방 2,000원 할인권', '빽다방 3,000원 할인권', '빽다방 3,000원 할인권', '빽다방 아메리카노 1잔 교환권', '빽다방 아메리카노 1잔 교환권', '빽다방 아메리카노 2잔 교환권']
+
+price_2000_products = ['빽다방 1,000원 할인권', '빽다방 1,000원 할인권', '빽다방 1,000원 할인권', '빽다방 2,000원 할인권', '빽다방 2,000원 할인권', '빽다방 2,000원 할인권', '빽다방 3,000원 할인권', '빽다방 3,000원 할인권', '빽다방 아메리카노 1잔 교환권', '빽다방 아메리카노 1잔 교환권', '빽다방 아메리카노 1잔 교환권', '빽다방 아메리카노 2잔 교환권']
+
+price_3000_products = ['빽다방 1,000원 할인권', '빽다방 1,000원 할인권', '빽다방 2,000원 할인권', '빽다방 2,000원 할인권', '빽다방 3,000원 할인권', '빽다방 3,000원 할인권', '빽다방 아메리카노 1잔 교환권', '빽다방 아메리카노 1잔 교환권', '빽다방 아메리카노 1잔 교환권', '빽다방 아메리카노 2잔 교환권', '빽다방 아메리카노 2잔 교환권', '빽다방 아메리카노 2잔 교환권']
 
 def input_guest():
   global command
@@ -59,7 +63,19 @@ def buy_1000():
   if buyable == False:
     return
   
-  print('1000원 상품 구매')
+  global price_1000_products
+  shuffle(price_1000_products)
+
+  random_product = price_1000_products[0]
+  
+  rate = get_product_rate(price_1000_products, random_product)
+  print(f'{random_product} 상품이 나왔습니다! ({rate}% 확률)')
+
+  global buy_list
+  buy_list.append(random_product)
+
+  global total_sales
+  total_sales += 1000
   
   global balance
   balance -= 1000
@@ -72,7 +88,19 @@ def buy_2000():
   if buyable == False:
     return
   
-  print('2000원 상품 구매')
+  global price_2000_products
+  shuffle(price_2000_products)
+
+  random_product = price_2000_products[0]
+  
+  rate = get_product_rate(price_2000_products, random_product)
+  print(f'{random_product} 상품이 나왔습니다! ({rate}% 확률)')
+
+  global buy_list
+  buy_list.append(random_product)
+
+  global total_sales
+  total_sales += 2000
   
   global balance
   balance -= 2000
@@ -85,7 +113,19 @@ def buy_3000():
   if buyable == False:
     return
   
-  print('3000원 상품 구매')
+  global price_3000_products
+  shuffle(price_3000_products)
+
+  random_product = price_3000_products[0]
+  
+  rate = get_product_rate(price_3000_products, random_product)
+  print(f'{random_product} 상품이 나왔습니다! ({rate}% 확률)')
+
+  global buy_list
+  buy_list.append(random_product)
+
+  global total_sales
+  total_sales += 3000
   
   global balance
   balance -= 3000
@@ -101,6 +141,15 @@ def check_balance(price):
   
   return True
 
+def get_product_rate(products, product_name):
+  product_count = 0
+
+  for product in products:
+    if product == product_name:
+      product_count += 1
+
+  return round(product_count / len(products) * 100, 2)
+
 def print_balance():
   global balance
   print(f'현재 잔액은 {balance}원 입니다.')
@@ -111,16 +160,10 @@ def print_buy_list():
   print(f'총 구매 상품: {buy_list}')
   
 def print_total_sales():
-  print(f'오늘의 매출은 총 {get_total_sales()}원 입니다.')
+  print(f'오늘의 총 매출은 {get_total_sales()}원 입니다.')
   
 def get_total_sales():
-  global sold_products
-  total_sales = 0
-  
-  for sold_product in sold_products:
-    for sold_product_key in sold_product:
-      total_sales += sold_product[sold_product_key]
-      
+  global total_sales
   return total_sales
   
 def guest_mode():
