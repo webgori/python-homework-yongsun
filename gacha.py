@@ -1,6 +1,6 @@
 from random import randint
 
-class Gacha():
+class Gacha:
   products_name = [
     '빽다방 1,000원 할인권',
     '빽다방 2,000원 할인권',
@@ -50,11 +50,11 @@ class Gacha():
     if self.command == 'a':
       self.admin_mode()
     elif self.command == '1':
-      self.buy_1000()
+      self.buy(1000)
     elif self.command == '2':
-      self.buy_2000()
+      self.buy(2000)
     elif self.command == '3':
-      self.buy_3000()
+      self.buy(3000)
     elif self.command == 'b':
       self.print_balance()
     elif self.command == 'l':
@@ -93,7 +93,7 @@ class Gacha():
       rate_index = 1
     elif price == 3000:
       rate_index = 2
-
+    
     for products_rate_index, rate_list in enumerate(self.products_rate):
       rate = rate_list[rate_index]
 
@@ -102,8 +102,8 @@ class Gacha():
       if sum_rate >= random_value:
         return self.products_name[products_rate_index], rate
 
-  def buy_1000(self):
-    buyable = self.check_balance(1000)
+  def buy(self, price):
+    buyable = self.check_balance(price)
     
     if buyable == False:
       return
@@ -117,63 +117,13 @@ class Gacha():
     rate = get_product_rate(price_1000_products, random_product)
     '''
 
-    random_product, rate = self.get_product(1000)
+    random_product, rate = self.get_product(price)
 
     print(f'{random_product} 상품이 나왔습니다! ({rate}% 확률)')
 
     self.buy_list.append(random_product)
-    self.total_sales += 1000
-    self.balance -= 1000
-    
-    self.check_exit_program()
-    
-  def buy_2000(self):
-    buyable = self.check_balance(2000)
-    
-    if buyable == False:
-      return
-    
-    '''
-    global price_2000_products
-    shuffle(price_2000_products)
-
-    random_product = price_2000_products[0]
-    
-    rate = get_product_rate(price_2000_products, random_product)
-    '''
-
-    random_product, rate = self.get_product(2000)
-
-    print(f'{random_product} 상품이 나왔습니다! ({rate}% 확률)')
-
-    self.buy_list.append(random_product)
-    self.total_sales += 2000
-    self.balance -= 2000
-    
-    self.check_exit_program()
-    
-  def buy_3000(self):
-    buyable = self.check_balance(3000)
-    
-    if buyable == False:
-      return
-    
-    '''
-    global price_3000_products
-    shuffle(price_3000_products)
-
-    random_product = price_3000_products[0]
-    
-    rate = get_product_rate(price_3000_products, random_product)
-    '''
-
-    random_product, rate = self.get_product(3000)
-
-    print(f'{random_product} 상품이 나왔습니다! ({rate}% 확률)')
-
-    self.buy_list.append(random_product)
-    self.total_sales += 3000
-    self.balance -= 3000
+    self.total_sales += price
+    self.balance -= price
     
     self.check_exit_program()
     
