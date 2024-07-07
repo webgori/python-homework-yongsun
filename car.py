@@ -20,19 +20,19 @@ class Car():
 class Hybrid(Car):
   max_charge = 30
   
-  def __init__(self, oil, charge):
+  def __init__(self, oil, charge_value):
     super().__init__(oil)
-    self.charge_value = charge
+    self.battery = charge_value
   
-  def charge(self, charge):
-    if charge <= 0:
+  def charge(self, charge_value):
+    if charge_value <= 0:
       return
       
-    self.charge_value += min(charge, Hybrid.max_charge)
+    self.battery += min(charge_value, Hybrid.max_charge)
   
   def hybrid_info(self):
     super().car_info()
-    print(f'현재 충전상태: {self.charge_value}')
+    print(f'현재 충전상태: {self.battery}')
   
   
 car = Hybrid(0, 0)
